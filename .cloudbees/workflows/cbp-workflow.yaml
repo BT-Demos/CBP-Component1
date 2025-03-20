@@ -1,0 +1,61 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: cbp-workflow
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    steps:
+      - name: compile
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "compile started..."
+
+      - name: produce-binary
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: sleep 10
+
+      - name: push binary
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "binary pushing..."
+
+      - name: register-build-artifacts
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "Sending build artifact details to CBP..."
+
+  test:
+    needs: [build]   # Depends on 'build' job
+    steps:
+      - name: Run tests
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "tests running..."
+
+      - name: Collect test results
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: sleep 17
+
+      - name: Publish test results
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "Sending Test Results to CBP"
+
+  deploy:
+    needs: [build, test]   # Depends on both 'build' and 'test' jobs
+    steps:
+      - name: prepare-deployment
+        uses: docker://golang:1.20.3-alpine3.17
+        run: sleep 15
+
+      - name: deploy app
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: echo "Invoking CBP Deploy Workflow..."
