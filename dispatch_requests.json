@@ -1,0 +1,11 @@
+[
+  {
+    "component_id": "0e69bd06-3e1f-49ad-adf4-afc6ba2ce127",
+    "branch_name": "test-dispatch-wf-1",
+    "workflow_file_name": "test-app-deploy-1.yaml",
+    "inputs": {
+      "version": "1.1.22",
+      "region": "us-west-2"
+    }
+  }
+]
