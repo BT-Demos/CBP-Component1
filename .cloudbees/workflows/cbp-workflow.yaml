@@ -24,9 +24,9 @@ jobs:
       - name: register-build-artifacts
         uses: https://github.com/cloudbees-io/register-build-artifact@v1
         with:
-          name: TestApp1
-          version: 1.0.0
-          url: docker.io/testapp1/testimg:1.0.0
+          name: TestApp2
+          version: 2.0.0
+          url: docker.io/testapp1/testimg:2.0.0
           digest: ""
   test:
     needs:
