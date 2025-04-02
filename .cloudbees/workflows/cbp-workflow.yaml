@@ -25,9 +25,9 @@ jobs:
         uses: https://github.com/cloudbees-io/register-build-artifact@v1
         with:
           name: CBP App
-          version: 2.0.0
-          url: docker.io/MyApp/CBP App:2.0.0
-          digest: "sha256:k4a123ee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2"
+          version: 1.0.0
+          url: docker.io/MyApp/CBP App:1.0.0
+          digest: "sha256:l4a123ee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2"
   test:
     needs:
       - build
